@@ -127,5 +127,4 @@ with open ('chat.html', 'a') as output:
     output.write('</div>\n</body>\n</html>')
     
     
-   
 # final output will be in a chat.html file in the same directory as this file
