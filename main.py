@@ -1,4 +1,3 @@
-#you = input("Enter sender contact: ")
 from datetime import datetime
 import time
 
@@ -23,7 +22,6 @@ def getDay(date_stamp):
         pass
 
 
-
 def readDate(date_time_str):
     d = date_time_str.split(',')[0].lstrip('[')
     t = date_time_str.split(',')[1].strip()
@@ -33,11 +31,11 @@ def readDate(date_time_str):
     e = time.mktime(time.strptime(str(epoch_value), '%Y-%m-%d %H:%M:%S'))
     return time.strftime("%A, %d %b %Y", time.localtime(e))
     
-    
+
+# file name should be exactly '_chat.txt'
 with open ('_chat.txt', 'r') as file:
     content = file.readlines()
-
-    content.remove(content[0]) #deleting the encryption notification
+    content.remove(content[0]) #deleting the encryption notification line
 
     dates = []
     #obtaining the dates to use in displaying days of chats
@@ -58,8 +56,6 @@ with open ('_chat.txt', 'r') as file:
 
         # open file to write the date of chat conversation
         with open ('chat.html', 'a') as output:
-            j = 0
-            k = 0
             try:
                 #print("comparing {} to {}".format(getDay(dates[i]), getDay(new_day)))
                 if getDay(dates[i]) > getDay(new_day):
@@ -120,7 +116,7 @@ with open ('_chat.txt', 'r') as file:
 
                     output.write("<div class='clear'></div>\n")
 
-        except IndexError:
+        except IndexError: # caters to text overlapping to new line
             my_text = content[i]
             print("\t\t\t\t", content[i])
             with open ('chat.html', 'a') as output:
@@ -129,3 +125,7 @@ with open ('_chat.txt', 'r') as file:
  
 with open ('chat.html', 'a') as output:
     output.write('</div>\n</body>\n</html>')
+    
+    
+   
+# final output will be in a chat.html file in the same directory as this file
