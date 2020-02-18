@@ -1,13 +1,16 @@
 from datetime import datetime
 import time
 
-
+user_name = input('Input WhatsApp username: ")
+                  
+                  
 def formatTime(t):
     hr = t.split(':')[0]
+    min = t.split(':')[1]
     if int(hr) >= 12:
-        return "{}:{}PM".format(hr, t.split(':')[1])
+        return "{}:{}PM".format(hr, min)
     else:
-        return "{}:{}AM".format(hr, t.split(':')[1])
+        return "{}:{}AM".format(hr, min)
 
 
 def getDay(date_stamp):
@@ -33,7 +36,7 @@ def readDate(date_time_str):
     
 
 # file name should be exactly '_chat.txt'
-with open ('_chat.txt', 'r') as file:
+with open ('_chat.txt', 'r', encoding='utf-8') as file:
     content = file.readlines()
     content.remove(content[0]) #deleting the encryption notification line
 
@@ -45,7 +48,7 @@ with open ('_chat.txt', 'r') as file:
         dates.append(date_time_stamp.lstrip('['))
  
     # open file to write WhatsApp encryption notification
-    with open ('chat.html', 'a') as output:
+    with open ('chat.html', 'a', encoding='utf-8') as output:
         output.write("<center><span class='enc'>Messages to this chat and calls are now secured with end-to-end encryption.</span></center>\n")
         output.write("<div class='date'> <b>{}</b> </div>\n<div class='clear'></div>".format(readDate(dates[0])))
         print("\t\t", dates[0].split(',')[0])
@@ -55,7 +58,7 @@ with open ('_chat.txt', 'r') as file:
         date_time = content[i].split(']') [0] # date substring eg [25/04/2019, 19:37:33
 
         # open file to write the date of chat conversation
-        with open ('chat.html', 'a') as output:
+        with open ('chat.html', 'a', encoding='utf-8') as output:
             try:
                 #print("comparing {} to {}".format(getDay(dates[i]), getDay(new_day)))
                 if getDay(dates[i]) > getDay(new_day):
@@ -77,13 +80,13 @@ with open ('_chat.txt', 'r') as file:
             sender = str(sender_and_msg.split(':') [0]) # retrieve sender name from the rest of the line
 
             # check the first sender and proceed
-            if 'Nel' in sender_and_msg and sender_and_msg.find('Nel') == 1: 
+            if user_name in sender_and_msg and sender_and_msg.find(user_name) == 1: 
                 my_text = sender_and_msg.split(':') [1] # obtain message by sender
                 print("\t\t\t\t", sender)
                 print("\t\t\t\t", my_text)
 
                 # open file to write the message by this sender in a chat bubble
-                with open ('chat.html', 'a') as output:
+                with open ('chat.html', 'a', encoding='utf-8') as output:
 
                     if "?<attached" in my_text or "<attached" in my_text: # check if message text has an attachment and format appropriately
                         attachment = sender_and_msg.split(":") [2].strip()
@@ -103,7 +106,7 @@ with open ('_chat.txt', 'r') as file:
                 print(your_text)
 
                 # open file to write the message of the other sender in a chat bubble
-                with open ('chat.html', 'a') as output:
+                with open ('chat.html', 'a', encoding='utf-8') as output:
                     
                     if "?<attached" in your_text or "<attached" in your_text: # check if message text has an attachment and format appropriately
                         attachment = sender_and_msg.split(":") [2].strip()
@@ -119,12 +122,11 @@ with open ('_chat.txt', 'r') as file:
         except IndexError: # caters to text overlapping to new line
             my_text = content[i]
             print("\t\t\t\t", content[i])
-            with open ('chat.html', 'a') as output:
+            with open ('chat.html', 'a', encoding='utf-8') as output:
                 output.write("<div class='me' style='width: {}'> {} </div>\n".format(len(my_text), my_text))
 
  
-with open ('chat.html', 'a') as output:
+with open ('chat.html', 'a', encoding='utf-8') as output:
     output.write('</div>\n</body>\n</html>')
-    
-    
+       
 # final output will be in a chat.html file in the same directory as this file
