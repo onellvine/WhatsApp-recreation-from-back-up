@@ -1,7 +1,7 @@
 from datetime import datetime
 import time
 
-user_name = input('Input WhatsApp username: ")
+user_name = input("Input WhatsApp username: ")
                   
                   
 def formatTime(t):
