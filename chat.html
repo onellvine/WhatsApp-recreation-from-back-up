@@ -3,22 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat</title>
+    <title>WhatsApp Chat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
     <script>
-        document.onload = alert('Welcome, girlfriend')
+        // document.onload = alert('Welcome, girlfriend')
     </script>
     <style>
         .wrapper {
-            margin: 0 auto;
+            margin: 0px auto;
             padding: 5px;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
         .enc {
             text-align: center;
             background-color: moccasin;
             padding: 4px;
-            width: 30%;
-            margin: 5 auto;
+            display: block;
+            width: 90%;
+            margin: 5px auto;
             border-radius: 3px;
             font-size: 0.6em;
         }
@@ -52,6 +57,8 @@
             color: #000;
             text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
             word-wrap: break-word;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.7em;
         }
 
         .bubble:before,
@@ -119,11 +126,12 @@
             font-weight: lighter;
             font-size: 0.6em;
             border-radius: 3px;
-            width: 180px;
-            margin: 0 auto;
+            width: 150px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
+            margin-bottom: 15px;
             padding: 5px;
-            margin-top: 5px;
-            margin-bottom: 5px;
         }
 
         .time {
